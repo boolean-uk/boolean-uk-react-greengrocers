@@ -22,13 +22,28 @@ button {
 
 /* Store */
 
+.filters-label {
+  text-align: center;
+  display: inline;
+}
+
+#sort-products {
+  text-align: center;
+  margin: 0.5rem 12rem 1rem 12rem;
+}
+
+#select-products {
+  text-align: center;
+  margin: 0.5rem 12rem 2rem 12rem;
+}
+
 #store {
-  height: 40vh;
   padding: 1rem;
 
-  overflow-y: scroll;
+  background-color: #c6ddcb;
 
-  background-color: #e7f4ea;
+  display: grid;
+  place-content: center;
 }
 
 #store h1 {
@@ -68,7 +83,7 @@ button {
 /* Cart */
 
 #cart {
-  height: 60vh;
+  height: 40vh;
   padding: 1rem;
 
   display: grid;
