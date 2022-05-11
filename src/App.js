@@ -2,36 +2,59 @@ import './styles/reset.css'
 import './styles/index.css'
 
 import initialStoreItems from './store-items'
-
-/*
-Here's what a store item should look like
-{
-  id: '001-beetroot',
-  name: 'beetroot',
-  price: 0.35
-}
-
-What should a cart item look like? 🤔
-*/
-
-console.log(initialStoreItems)
+import { useEffect, useState } from 'react'
+import Store from './Store'
+import Cart from './Cart'
+import Filters from './Filters'
+import Total from './Total'
+// import ExtraInfo from './ExtraInfo'
 
 export default function App() {
-  // Setup state here...
+  const [items, setItems] = useState(initialStoreItems)
+  const [cart, setCart] = useState([])
+  const [selectedInfo, setSelectedInfo] = useState(null)
+
+  console.log(selectedInfo)
 
   return (
     <>
       <header id="store">
         <h1>Greengrocers</h1>
+        <Filters
+          setItems={setItems}
+          initialStoreItems={initialStoreItems}
+          items={items}
+        />
         <ul className="item-list store--item-list">
-          {/* Wrtite some code here... */}
+          <Store
+            items={items}
+            cart={cart}
+            setCart={setCart}
+            selectedInfo={selectedInfo}
+            setSelectedInfo={setSelectedInfo}
+          />
         </ul>
+        {/* {selectedInfo !== null && (
+          <ExtraInfo
+            selectedInfo={selectedInfo}
+            setSelectedInfo={setSelectedInfo}
+            items={items}
+          />
+        )} 
+        {selectedInfo === null && (
+          <ExtraInfo
+            items={items}
+            cart={cart}
+            setCart={setCart}
+            setSelectedInfo={setSelectedInfo}
+          />
+        )} */}
       </header>
       <main id="cart">
         <h2>Your Cart</h2>
         <div className="cart--item-list-container">
           <ul className="item-list cart--item-list">
-            {/* Wrtite some code here... */}
+            <Cart cart={cart} setCart={setCart} />
           </ul>
         </div>
         <div className="total-section">
@@ -39,7 +62,7 @@ export default function App() {
             <h3>Total</h3>
           </div>
           <div>
-            <span className="total-number">£0.00</span>
+            <Total cart={cart} />
           </div>
         </div>
       </main>
